@@ -9,14 +9,14 @@ class Solution {
                     continue;
                 }
                 if(i>0 && j>0){
-                    matrix[i][j] += min(matrix[i-1][j], matrix[i][j-1], matrix[i-1][j-1]);
+                    matrix[i][j] += Math.min(Math.min(matrix[i-1][j], matrix[i][j-1]), matrix[i-1][j-1]);
                 }
                 count += matrix[i][j];
             }
         }
         return count;
     }
-    private int min(int a, int b, int c){
-        return Math.min(a, Math.min(b,c));
-    }
+    // private int min(int a, int b, int c){
+    //     return Math.min(a, Math.min(b,c));
+    // }
 }

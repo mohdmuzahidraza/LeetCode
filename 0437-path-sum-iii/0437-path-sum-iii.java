@@ -19,7 +19,7 @@ class Solution {
             return 0;
         }
         int count = 0;
-        count += findPath(root, (long)targetSum);
+        count += findPath(root, targetSum);
         count += pathSum(root.left, targetSum);
         count += pathSum(root.right, targetSum);
 

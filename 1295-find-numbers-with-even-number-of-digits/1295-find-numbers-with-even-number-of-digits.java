@@ -3,12 +3,10 @@ class Solution {
         int count = 0;
 
         for(int num : nums){
-            int len = String.valueOf(num).length();
-
-            if(len % 2 == 0){
+            if((num >= 10 && num <= 99) || (num >= 1000 && num <= 9999) || num == 100000){
                 count++;
             }
         }
-        return count;
+        return count; 
     }
 }

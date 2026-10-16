@@ -17,7 +17,7 @@ class Solution {
        ListNode l = head;
 
        while(l != null){
-        len = len + 1;
+        len++;
         l = l.next;
        }
 

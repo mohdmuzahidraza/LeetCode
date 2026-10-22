@@ -1,40 +1,31 @@
 class Solution {
-    public boolean isValid(char[][] board, int row, int col, char num){
-        for(int j=0; j<9; j++){
-            if(board[row][j]==num){
-                return false;
-            }
-        }
-        for(int i=0; i<9; i++){
-            if(board[i][col]==num){
-                return false;
-            }
-        }
-        int sRow = row/3*3;
-        int sCol = col/3*3;
-        for(int i=sRow; i<sRow+3; i++){
-            for(int j=sCol; j<sCol+3; j++){
-                if(board[i][j]==num){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
     public boolean isValidSudoku(char[][] board) {
-        for(int i=0; i<9; i++){
-            for(int j=0; j<9; j++){
-                if(board[i][j] == '.' ){
+
+        boolean[][] row = new boolean[9][9];
+        boolean[][] col = new boolean[9][9];
+        boolean[][] box = new boolean[9][9];
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                if (board[i][j] == '.') {
                     continue;
                 }
-                char num = board[i][j];
-                board[i][j] = '.';
-                if(isValid(board,i,j,num)==false){
+
+                int num = board[i][j] - '1';
+
+                int boxIndex = (i / 3) * 3 + (j / 3);
+
+                if (row[i][num] || col[j][num] || box[boxIndex][num]) {
                     return false;
                 }
-                board[i][j] = num;
+
+                row[i][num] = true;
+                col[j][num] = true;
+                box[boxIndex][num] = true;
             }
         }
+
         return true;
     }
 }

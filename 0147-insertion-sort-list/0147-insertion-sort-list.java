@@ -11,24 +11,19 @@
 class Solution {
     public ListNode insertionSortList(ListNode head) {
         ListNode dummy = new ListNode(0);
+        ListNode prev = dummy;
 
-        while(head != null){
-            ListNode curr = head;
-            head = head.next;
+        while (head != null) {
+            ListNode temp = head.next;
 
-            if(dummy.next == null || dummy.next.val >= curr.val){
-                curr.next = dummy.next;
-                dummy.next = curr;
-            }else{
-                ListNode temp = dummy.next;
+            if (prev.val >= head.val) prev = dummy;
 
-                while (temp.next != null && temp.next.val < curr.val){
-                    temp = temp.next;
-                }
+            while (prev.next != null && prev.next.val < head.val)
+                prev = prev.next;
 
-                curr.next = temp.next;
-                temp.next = curr;
-            }
+            head.next = prev.next;
+            prev.next = head;
+            head = temp;
         }
 
         return dummy.next;
